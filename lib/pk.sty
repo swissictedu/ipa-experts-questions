@@ -1,0 +1,104 @@
+% define dependencies
+\usepackage{scrdate} % date helper
+\usepackage{scrtime} % time helper
+\usepackage{scrlayer-scrpage} % koma script helper
+\usepackage[utf8]{inputenc} % utf8 input encoding
+\usepackage[T1]{fontenc} % t1 font encoding
+\usepackage[ngerman]{babel} % german document language
+\usepackage[hyphens]{url} % break hyper links
+\usepackage{hyperref} % internal, external hyper links and pdf options
+\usepackage{lipsum} % blind text
+\usepackage{geometry} % helps to manage page geometry
+\usepackage{lastpage} % determine last page
+\usepackage{color} % implements colors
+\usepackage{xcolor} % implements modern colors
+\usepackage{multicol} % multiple columns environment
+\usepackage{mdframed} % enhanced framing
+\usepackage{enumitem} % enumeration
+\usepackage[style=swiss]{csquotes} % helps to style quotes
+\usepackage{pifont} % symbols
+
+% configure KOMAScript
+\KOMAoptions{usegeometry, fontsize=10pt}
+
+% define page geometry
+\geometry{top=2.5cm, right=1cm, bottom=2.5cm, left=1cm, foot=1cm, head=2cm, headsep=0.5cm}
+\setlength{\footheight}{24.0pt}
+\setcounter{secnumdepth}{\partnumdepth}
+
+% set default fonts
+\renewcommand*\rmdefault{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+
+% style headings
+\RedeclareSectionCommand[
+    afterindent=false,
+    beforeskip=5mm,
+    tocnumwidth=3em,
+    afterskip=3mm,
+    font=\fontsize{16}{16}\selectfont,
+    style=section]{chapter}
+\RedeclareSectionCommand[
+    beforeskip=-1\baselineskip,
+    tocindent=3em,
+    tocnumwidth=4em,
+    font=\fontsize{13}{13}\selectfont,
+    afterskip=3mm]{section}
+\RedeclareSectionCommand[
+    tocnumwidth=4em,
+    tocindent=7em]{subsection}
+
+% define colors
+\definecolor{PrimaryColor}{HTML}{0076BD}
+\definecolor{WarnColor}{HTML}{FF0000}
+\definecolor{LighterGrey}{HTML}{EEEEEE}
+\definecolor{LightGrey}{HTML}{DDDDDD}
+\definecolor{LineLightGrey}{HTML}{CCCCCC}
+\definecolor{TextLightGrey}{HTML}{999999}
+\definecolor{HyperLink}{HTML}{0076BD}
+\definecolor{PlotColorOne}{HTML}{216778}
+\definecolor{PlotColorTwo}{HTML}{3B7821}
+\definecolor{PlotColorThree}{HTML}{782167}
+
+% configure pdf
+\hypersetup{
+  pdfpagemode=UseOutlines,
+  pdfmenubar=true,
+  pdftoolbar=true,
+  pdfwindowui=true,
+  pdflang=de,
+  pdfdisplaydoctitle=true,
+  breaklinks=true,
+  colorlinks=true,
+  linkcolor=HyperLink,
+  citecolor=HyperLink,
+  filecolor=HyperLink,
+  menucolor=HyperLink,
+  urlcolor=HyperLink,
+  bookmarksnumbered=true
+}
+
+% commands and macros
+\newsavebox\TBox
+\renewcommand*{\LayoutTextField}[2]{#1 \raisebox{-0.1cm}{#2}}
+\renewcommand*{\LayoutCheckField}[2]{#1 \raisebox{-0.1cm}{#2}}
+\mdfdefinestyle{taskitemstyle}{%
+linecolor=gray!20,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=taskitemstyle]{taskitemframe}{}
+
+\newcommand{\fieldname}[2]{#1-#2}
+\newcommand{\commenttextfield}[1]{\TextField[name=#1_comment,charsize=0pt,multiline=true,width=\textwidth]{}}
+\newcommand{\donecheckbox}[1]{\CheckBox[name=#1_done]{Erledigt:}}
+\newenvironment{taskitem}[1]%
+{\newcommand{\taskitemtitle}{#1}\begin{taskitemframe}[#1\hfill \donecheckbox{\taskitemtitle}]}
+{\\\commenttextfield{\taskitemtitle}\end{taskitemframe}}
+\newenvironment{taskitemwithoutcomment}[1]%
+{\newcommand{\taskitemtitle}{#1}\begin{taskitemframe}[#1\hfill \donecheckbox{\taskitemtitle}]}
+{\end{taskitemframe}}
+\newenvironment{taskitemwithoutdone}[1]%
+{\newcommand{\taskitemtitle}{#1}\begin{taskitemframe}[#1]}
+{\\\commenttextfield{\taskitemtitle}\end{taskitemframe}}
