@@ -24,7 +24,7 @@ jobs:
       - name: Run Tectonic and Biber
         run: tectonic -X build
       - name: Upload pdf
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Document
           path: build/default/default.pdf
