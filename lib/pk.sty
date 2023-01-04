@@ -17,9 +17,12 @@
 \usepackage{enumitem} % enumeration
 \usepackage[style=swiss]{csquotes} % helps to style quotes
 \usepackage{pifont} % symbols
+\usepackage{wallpaper} % background image to every page
 
 % configure KOMAScript
 \KOMAoptions{usegeometry, fontsize=10pt}
+
+\CenterWallPaper{}{../lib/background.pdf}
 
 % define page geometry
 \geometry{top=2.5cm, right=1cm, bottom=2.5cm, left=1cm, foot=1cm, head=2cm, headsep=0.5cm}
@@ -96,7 +99,7 @@ innertopmargin=\topskip,
 \newcommand{\topictextfield}[1]{\TextField[name=#1_topic,charsize=0pt,multiline=true,width=\textwidth, height=14em]{\textbf{Gesprächsthema:}\\}}
 \newcommand{\expectationtextfield}[1]{\TextField[name=#1_expectation,charsize=0pt,multiline=true,width=\textwidth, height=14em]{\textbf{Gesprächsantizipation:}\\}}
 \newcommand{\conversationtextfield}[1]{\TextField[name=#1_conversation,charsize=0pt,multiline=true,width=\textwidth, height=18em]{\textbf{Gesprächsverlauf:}\\}}
-\newcommand{\evaluationtextfield}[1]{\TextField[name=#1_evaluation,charsize=0pt,multiline=true,width=\textwidth, height=10em]{\textbf{Auswertung:} (Zusammengeführt? Gestrichen? Weitere relevante Hinweise)\\}}
+\newcommand{\evaluationtextfield}[1]{\TextField[name=#1_evaluation,charsize=0pt,multiline=true,width=\textwidth, height=10em]{\textbf{Auswertung:} (Kurze, relevante Hinweise)\\}}
 \newcommand{\donecheckbox}[1]{\CheckBox[name=#1_done]{Erledigt:}}
 \newcommand{\criterianumbertextfield}[1]{\TextField[name=#1_criteria, width=1.5em]{Kriterium: C}}
 \newcommand{\titletextfield}[1]{\TextField[name=#1_title, width=13cm]{}}
